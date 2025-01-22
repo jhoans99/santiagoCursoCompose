@@ -65,8 +65,11 @@ dependencies {
     //Serialization
     implementation(libs.kotlin.serialization)
 
-    //
+    //Constraint
     implementation(libs.constraint.layout)
+
+    //ViewModel
+    implementation(libs.androidx.viewmodel)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

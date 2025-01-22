@@ -7,16 +7,19 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import com.sebas.santiagocompose.ui.home.HomeScreen
 import com.sebas.santiagocompose.ui.login.LoginScreen
+import com.sebas.santiagocompose.ui.login.LoginViewModel
 
 @Composable
-fun AppNavigation() {
+fun AppNavigation(viewModel: LoginViewModel) {
     val navController = rememberNavController()
     NavHost(
         navController = navController,
         startDestination = Login
     ) {
         composable<Login> {
-            LoginScreen { nameUser ->
+            LoginScreen(
+                viewModel
+            ) { nameUser ->
                 navController.navigate(Home(nameUser))
             }
         }
