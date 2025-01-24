@@ -15,10 +15,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.sebas.santiagocompose.navigation.AppNavigation
 import com.sebas.santiagocompose.ui.login.LoginViewModel
 import com.sebas.santiagocompose.ui.theme.SantiagoComposeTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-
-    private val viewModel by viewModels<LoginViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -30,7 +30,7 @@ class MainActivity : ComponentActivity() {
                             .fillMaxSize()
                             .padding(innerPadding)
                     ) {
-                        AppNavigation(viewModel)
+                        AppNavigation()
                     }
                 }
             }

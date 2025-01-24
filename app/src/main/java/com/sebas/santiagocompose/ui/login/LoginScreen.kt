@@ -4,7 +4,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.OutlinedTextField
@@ -12,27 +11,26 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.zIndex
-import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.sebas.santiagocompose.ui.theme.SantiagoComposeTheme
 
 @Composable
 fun LoginScreen(
-    viewModel: LoginViewModel,
+    viewModel: LoginViewModel = hiltViewModel(),
     onNavigateHome: (String) -> Unit
  ) {
     val uiState by viewModel.uiState.collectAsState()
 
     if(uiState.isLoading) {
         Column(
-            modifier = Modifier.fillMaxSize().background(Color.LightGray)
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color.LightGray)
                 .zIndex(2f),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
@@ -42,6 +40,17 @@ fun LoginScreen(
             )
         }
     }
+    loginBody(uiState) {
+        onNavigateHome(it)
+    }
+}
+
+@Composable
+fun loginBody(
+    uiState: LoginUiState,
+    viewModel: LoginViewModel = hiltViewModel(),
+    onNavigateHome: (String) -> Unit
+) {
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -50,7 +59,7 @@ fun LoginScreen(
         OutlinedTextField(
             value = uiState.nameUser,
             onValueChange = {
-              viewModel.onUpdateNameUser(it)
+                viewModel.onUpdateNameUser(it)
             },
             label = {
                 Text(text = "Ingresa el usuario")

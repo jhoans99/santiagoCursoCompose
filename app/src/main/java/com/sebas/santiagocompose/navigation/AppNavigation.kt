@@ -10,16 +10,14 @@ import com.sebas.santiagocompose.ui.login.LoginScreen
 import com.sebas.santiagocompose.ui.login.LoginViewModel
 
 @Composable
-fun AppNavigation(viewModel: LoginViewModel) {
+fun AppNavigation() {
     val navController = rememberNavController()
     NavHost(
         navController = navController,
         startDestination = Login
     ) {
         composable<Login> {
-            LoginScreen(
-                viewModel
-            ) { nameUser ->
+            LoginScreen() { nameUser ->
                 navController.navigate(Home(nameUser))
             }
         }
