@@ -13,10 +13,7 @@ import retrofit2.Retrofit
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(
-    private val fetchCharactersRepository: FetchCharactersRepository,
-    private val retrofit: Retrofit
-): ViewModel() {
+class LoginViewModel @Inject constructor(): ViewModel() {
 
     private val _uiState = MutableStateFlow(LoginUiState())
     val uiState: StateFlow<LoginUiState> = _uiState

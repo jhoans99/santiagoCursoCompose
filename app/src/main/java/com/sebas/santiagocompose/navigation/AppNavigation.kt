@@ -23,9 +23,7 @@ fun AppNavigation() {
         }
         composable<Home> { navBackStackEntry ->
             val home: Home = navBackStackEntry.toRoute()
-            HomeScreen(home.nameUser) {
-                navController.popBackStack()
-            }
+            HomeScreen(home.nameUser)
         }
     }
 }
